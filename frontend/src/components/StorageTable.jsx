@@ -36,6 +36,30 @@ export default function StorageTable({ cloud }) {
 
   const columns = Object.keys(data[0]);
 
+   const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  if (loading) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        fontFamily: 'Arial, sans-serif'
+      }}>
+        <div style={{ fontSize: '18px', color: '#666' }}>Loading...</div>
+      </div>
+    );
+  }
   return (
     <table style={{ width: "100%", borderCollapse: "collapse" }}>
       <thead>
